@@ -1,0 +1,30 @@
+body { 
+    background: #099;
+    margin: 0;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+
+.container{
+   display: flex;
+   flex-direction: column;
+   justify-content: center;
+   align-items: center;
+   /* background: coral; */
+   height: 100vh;
+}
+
+p{
+    color: white;
+}
+
+h1{
+    color: white;
+}
+
+.btn{
+    height: 50px;
+    width: 200px;
+    border-radius: 3em;
+    border-color: turquoise;
+}
+
