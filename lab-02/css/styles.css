@@ -1,0 +1,50 @@
+@import url('https://fonts.googleapis.com/css2?family=Hammersmith+One&display=swap');
+
+body{
+    margin: 0;
+}
+
+nav{
+    display: flex;
+    justify-content: space-around;
+    background-color: rgb(21, 21, 21);
+    font-family: 'Hammersmith One', sans-serif;
+    flex-direction: column;
+    width: 15vw;
+    flex-shrink: 0;
+    order: 2;
+   
+    
+}
+
+nav a{
+    color: white;
+    text-decoration: none;
+    transition: color 0.25s;
+    padding: 1em 0.5em;
+}
+
+nav a:hover{
+    color: #0349fc;
+    font-weight: bold;
+}
+
+header{
+    background-color: #0349fc;
+    overflow: auto;
+}
+
+main{
+    display: flex;
+}
+
+section{
+    background-color: red;
+    overflow: auto;
+    box-sizing: border-box;
+}
+
+p{
+    padding: 0.75em 0.25em;
+
+}
