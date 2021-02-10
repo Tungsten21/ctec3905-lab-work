@@ -1,0 +1,21 @@
+/* p{
+    width: 900px;
+    margin: auto;
+} */
+
+body{
+    max-width: 900px;
+    margin: auto;
+    background-color: red;
+    color: yellow;
+}
+
+h1{
+   font-family: monospace;
+}
+
+.special{
+    background-color: yellow;
+    color: red;
+    
+}
