@@ -5,3 +5,5 @@ function greetMe(){
 function changeButton(){
     myTrigger.textContent = "Please work";
 }
+
+myTrigger.addEventListener('click', greetMe);
