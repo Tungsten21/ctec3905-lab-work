@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/styles.css">
+    <title>Document</title>
+</head>
+<body>
+    <header>
+        <section id="search">
+            <input id="myQuery" type="search" placeholder=" &#128269; Search" aria-label="search">
+            <button id="searchButton">Search</button>
+        </section>
+        <h1>Welcome to my website!</h1>
+    </header>
+
+    <main>
+        <section>
+            <label for="myName">Enter your name: </label>
+            <input type="text" name="" id="myName">
+        </section>
+
+        <section>
+            <h2>Numbers</h2>
+            <label for="myAge">Enter your age:</label>
+            <input type="number" id="myAge" max="150" min="21" step="2">
+        </section>
+
+        <section class="relative">
+            <h2>Ranges</h2>
+            <label for="myHeight">Element height:</label>
+            <input type="range" id="myHeight" value="50" step="50">
+            <div id="heightTarget"></div>
+        </section>
+
+        <section id="colours">
+            <h2>Colours</h2>
+            <label for="myBG">Background: </label>
+            <input type="color" id="myBG" value="#ffffff"><br>
+            <label for="myFG">Foreground: </label>
+            <input type="color" id="myFG" value="#000000">
+        </section>
+
+        <section>
+            <form id="login">
+                <h2>Sign In</h2>
+                <label for="myUser">Username: </label>
+                <input id="myUser" name="username" placeholder="Enter your username" required>
+                <label for="myPassword">Password: </label>
+                <input id="myPassword" type="password" name="password" placeholder="Enter your password" minlength="8" required>
+                <label for="myConfirmation">Confirm password: </label>
+                <input id="myConfirmation" type="password" name="confirmation" placeholder="Confirm password" minlength="8" required>
+                <input type="submit" value="Login">
+            </form>
+        </section>
+    </main>
+
+    <script src="js/scripts.js"></script>
+</body>
+</html>
