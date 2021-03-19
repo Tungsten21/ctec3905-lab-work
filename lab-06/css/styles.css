@@ -12,7 +12,7 @@ body {
   margin: 0 auto;
 }
 
-header, section {
+header, section, footer {
   background-color: var(--dark);
   color: var(--light);
   overflow: auto;
@@ -61,4 +61,12 @@ button {
 
 label {
     flex-grow: 1;
-}]
+}
+
+input[type="checkbox"]{
+  display: none;
+}
+
+input:checked + label{
+  text-decoration: line-through;
+}
