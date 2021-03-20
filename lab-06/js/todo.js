@@ -1,5 +1,6 @@
 "use strict";
 
+(() => {
 function addItem(text, done){
     const item = document.createElement('li');
     const label = document.createElement('label');
@@ -14,6 +15,11 @@ function addItem(text, done){
     button.textContent = "x";
     button.addEventListener('click', ev => {
         item.remove();
+        saveToStorage(); 
+    });
+
+    input.addEventListener('input', ev => {
+        saveToStorage();
     });
     
     
@@ -30,7 +36,7 @@ function clearList(){
 }
 
 function saveToStorage(){
-    const elements = Array.from(todo,querySelectorAll('li'));
+    const elements = Array.from(todo.querySelectorAll('li'));
     const data = elements.map(el => {
         return{
             text: el.querySelector('label').textContent,
@@ -41,17 +47,35 @@ function saveToStorage(){
     localStorage.setItem(todo.id, JSON.stringify(data));
 }
 
+function loadFromStorage(){
+    const data = JSON.parse(localStorage.getItem(todo.id));
+    if(data){
+        clearList();
+        for (const item of data){
+            addItem(item.text, item.done);
+    }
+    }
+    
+}
+
+loadFromStorage();
+
 add.addEventListener('click', ev => {
     if(text.value){ //check we have data
         addItem(text.value);    
         text.value = null;  //clear the input
         text.focus();   //give textbox focus
+        saveToStorage();
     }
     
 });
 
 clear.addEventListener('click', ev => {
-    clearList();
+    if(confirm("Are you sure you want to delete the entire list?")){
+        clearList();
+        saveToStorage();
+    }
+        
 });
 
 text.addEventListener('keydown', ev =>{
@@ -59,3 +83,4 @@ text.addEventListener('keydown', ev =>{
         add.click();
     }
 });
+})()
