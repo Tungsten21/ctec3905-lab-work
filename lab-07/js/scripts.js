@@ -1,5 +1,9 @@
 "use strict";
 
+let pageSize = 12;
+let currentPage;
+let objectIDs;
+
 async function loadObject(id){
     const url = `https://collectionapi.metmuseum.org/public/collection/v1/objects/${id}`;
     const response = await fetch(url);
@@ -41,3 +45,61 @@ async function insertArticle(id){
     
     results.appendChild(article)
 }
+
+async function loadSearch(query){
+    let baseURL = `https://collectionapi.metmuseum.org/public/collection/v1/search`;
+    const response = await fetch(`${baseURL}?hasImages=true&q=${query}`);
+    return response.json();
+}
+
+async function doSearch(){
+    const result = await loadSearch(query.value);
+    objectIDs = result.objectIDs || []; // store the search result (or an empty list) in the objectIDs variable.
+    count.textContent = `found ${result.objectIDs.length} results for "${query.value}"`;
+    nPages.textContent = Math.ceil(objectIDs.length / pageSize);
+    currentPage = 1;
+    loadPage();
+}
+
+function clearResults(){
+    while(results.firstChild){
+        results.firstChild.remove();
+    }
+}
+
+function loadPage(){
+    clearResults();
+    const myObjects = objectIDs.slice((currentPage - 1) * pageSize, currentPage * pageSize);
+    myObjects.forEach(insertArticle);
+    pageIndicator.textContent = currentPage;
+}
+
+function nextPage(){
+    currentPage += 1;
+    const nPages = Math.ceil(objectIDs.length / pageSize);
+    if(currentPage > nPages){
+        currentPage = 1;
+    }
+    loadPage();
+}
+
+function prevPage(){
+    currentPage -= 1;
+    const nPages = Math.ceil(objectIDs.length / pageSize);
+    if(currentPage < 1){
+        currentPage = nPages;
+    }
+    loadPage();
+}
+
+async function insertArticles(objIds) {
+    objects = await Promise.all(objIds.map(loadObject));
+    articles = objects.map(buildArticleFromData);
+    articles.forEach(a => results.appendChild(a));
+  }
+
+//EventListeners
+
+query.addEventListener('change', doSearch);
+prev.addEventListener('click', prevPage);
+next.addEventListener('click', nextPage);
